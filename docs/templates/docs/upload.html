@@ -1,0 +1,35 @@
+{% extends 'docs/base.html' %}
+{% load static %}
+{% block title %}Upload Document{% endblock title %}
+{% block main-content %}
+
+<div class="container my-2 ">
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}><div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong> {{ message }} </strong> 
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form action="{% url 'upload' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+            <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Document Title</label>
+            <input type="text" class="form-control" name="title" id="title">
+            </div>
+            <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Upload File</label>
+            <input type="file" class="form-control" name="docs_file" id="file">
+            </div>
+            <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Description</label>
+            <input type="text" class="form-control" name="description" id="desc" >
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+    </form>
+</div>
+
+{% endblock main-content %}

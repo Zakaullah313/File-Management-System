@@ -1,0 +1,33 @@
+{% extends 'docs/base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+{% block main-content %}
+
+<div class="container my-2 ">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">File</th>
+            <th scope="col">Posted On</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in doc %}
+        <tr>
+            <th scope="row"> {{i.id}} </th>
+            <td>{{i.title}}</td>
+            <td> {{i.description}} </td>
+            <td><a href="media/Files/{{i.docs_file}}" download>{{i.docs_file}}</a></td>
+            <td> {{i.date_posted}} </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</div>
+
+{% endblock main-content %}
+
